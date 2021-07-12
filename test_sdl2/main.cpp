@@ -1,11 +1,5 @@
 #include <iostream>
 #include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-
-#ifdef __EMSCRIPTEN__
-#include <emscripten.h>
-#endif
 
 SDL_Window *window;
 SDL_Renderer *renderer;
@@ -24,75 +18,28 @@ void onFrame()
       isEnd = true;
       break;
     case SDL_KEYDOWN:
-      switch (event.key.keysym.sym)
-      {
-      case SDLK_w:
-        std::cout << "w" << std::endl;
-        break;
-      case SDLK_s:
-        std::cout << "s" << std::endl;
-        break;
-      }
+      isEnd = true;
       break;
     case SDL_KEYUP:
       isEnd = true;
       break;
-    case SDL_MOUSEMOTION:
-      std::cout << "mouse motion (" << event.motion.x << ", " << event.motion.y << ")" << std::endl;
-      break;
     }
   }
 
-  SDL_SetRenderDrawColor(renderer, 50, 50, 50, SDL_ALPHA_OPAQUE);
+  SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
   SDL_RenderClear(renderer);
 
-  SDL_Rect dest;
-  dest.x = 100;
-  dest.y = 50;
-  dest.w = 100;
-  dest.h = 100;
+  SDL_Rect dest = {100, 100, 200, 200};
   SDL_RenderCopyEx(renderer, texture, NULL, &dest, 0, NULL, SDL_FLIP_NONE);
-
-  dest.x = 200;
-  dest.y = 200;
-  dest.w = 100;
-  dest.h = 100;
-  SDL_SetRenderDrawColor(renderer, 250, 50, 50, SDL_ALPHA_OPAQUE);
-  SDL_RenderFillRect(renderer, &dest);
 
   SDL_RenderPresent(renderer);
 }
 
-void mainLoop()
-{
-#ifdef __EMSCRIPTEN__
-  emscripten_set_main_loop(onFrame, 0, 1);
-#else
-  while (!isEnd)
-  {
-    onFrame();
-    SDL_Delay(20);
-  }
-#endif
-}
-
-extern "C" int main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   if (SDL_Init(SDL_INIT_VIDEO) < 0)
   {
     std::cout << "SDL could not initialize! SDL Error: " << SDL_GetError() << std::endl;
-    return 1;
-  }
-
-  if (IMG_Init(IMG_INIT_PNG) < 0)
-  {
-    std::cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << std::endl;
-    return 1;
-  }
-
-  if (TTF_Init() < 0)
-  {
-    std::cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << std::endl;
     return 1;
   }
 
@@ -126,14 +73,16 @@ extern "C" int main(int argc, char **argv)
 
   SDL_FreeSurface(surface);
 
-  mainLoop();
+  while (!isEnd)
+  {
+    onFrame();
+    SDL_Delay(20);
+  }
 
   SDL_DestroyTexture(texture);
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
 
-  TTF_Quit();
-  IMG_Quit();
   SDL_Quit();
 
   return 0;
