@@ -8,6 +8,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake-modules;${CMAKE_MODULE_PATH}")
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
 
+add_subdirectory(libutils)
+add_subdirectory(example)
+
 add_subdirectory(test_curl)
 add_subdirectory(test_openal)
 add_subdirectory(test_opencv)

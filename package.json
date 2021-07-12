@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "clear": "rm -rf build/* bin/*",
+    "example": "cd build && cmake .. && make && cd .. && bin/example",
     "curl": "cd build && cmake .. && make && cd .. && bin/test_curl",
     "opencv": "cd build && cmake .. && make && cd .. && bin/test_opencv",
     "openssl_rsa2048": "cd build && cmake .. && make && cd .. && bin/test_openssl_rsa2048",
