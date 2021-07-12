@@ -26,14 +26,14 @@ int main(int argc, char **argv)
       throw std::runtime_error("RSA_generate_key_ex");
     }
 
-    bp_public = BIO_new_file("assets/public.pem", "w+");
+    bp_public = BIO_new_file("public.pem", "w+");
     ret = PEM_write_bio_RSAPublicKey(bp_public, rsa);
     if (ret != 1)
     {
       throw std::runtime_error("PEM_write_bio_RSAPublicKey");
     }
 
-    bp_private = BIO_new_file("assets/private.pem", "w+");
+    bp_private = BIO_new_file("private.pem", "w+");
     ret = PEM_write_bio_RSAPrivateKey(bp_private, rsa, nullptr, nullptr, 0, nullptr, nullptr);
     if (ret != 1)
     {
