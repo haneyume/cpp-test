@@ -6,8 +6,8 @@
     "example": "cd build && cmake .. && make && cd .. && bin/example",
     "curl": "cd build && cmake .. && make && cd .. && bin/test_curl",
     "openal": "cd build && cmake .. && make && cd .. && bin/test_openal",
-    "opencv": "cd build && cmake .. && make && cd .. && bin/test_opencv",
-    "opengl": "cd build && cmake .. && make && cd .. && bin/test_opengl",
+    "opencv_videocapture": "cd build && cmake .. && make && cd .. && bin/test_opencv_videocapture",
+    "opengl_legacy": "cd build && cmake .. && make && cd .. && bin/test_opengl_legacy",
     "openssl_rsa2048": "cd build && cmake .. && make && cd .. && bin/test_openssl_rsa2048",
     "openssl_sha256": "cd build && cmake .. && make && cd .. && bin/test_openssl_sha256",
     "sdl2": "cd build && cmake .. && make && cd .. && bin/test_sdl2"
