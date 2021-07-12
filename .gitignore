@@ -1,0 +1,11 @@
+# OSX
+#
+.DS_Store
+
+# build
+#
+bin/
+build/
+
+private.pem
+public.pem

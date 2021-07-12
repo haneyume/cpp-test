@@ -1,0 +1,8 @@
+{
+  "name": "cpp-test",
+  "version": "1.0.0",
+  "scripts": {
+    "clear": "rm -rf build/* bin/*",
+    "curl": "cd build && cmake .. && make && cd .. && bin/test_curl"
+  }
+}
