@@ -24,8 +24,17 @@ void displayCallback(void)
 
   gluLookAt(0.0f, 5.0f, 10.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
-  GLfloat light_position[] = {1.0f, 1.0f, 1.0f, 0.0f};
-  glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+  // setting light parameters
+  {
+    GLfloat light_ambient[] = {0.0f, 0.0f, 0.0f, 1.0f};
+    GLfloat light_diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    GLfloat light_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    GLfloat light_position[] = {1.0f, 1.0f, 1.0f, 0.0f};
+    glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+  }
 
   // render teapot
   {
